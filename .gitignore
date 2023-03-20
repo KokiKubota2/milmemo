@@ -37,3 +37,4 @@ next-env.d.ts
 
 certs/service-account.json
 .env
+.firebase/
