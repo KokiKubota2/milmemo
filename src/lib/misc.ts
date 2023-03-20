@@ -1,5 +1,14 @@
+import _ from 'lodash'
 import { DateTime } from 'luxon'
-import { Timestamp } from 'firebase/firestore'
 
-export const formatTimestamp = (t: Timestamp) =>
-  DateTime.fromJSDate(t.toDate()).toFormat('yyyy-MM-dd HH:mm:ss')
+export const formatTimestamp = (t: { _seconds: number }) =>
+  DateTime.fromSeconds(t._seconds).toFormat('yyyy-MM-dd HH:mm')
+
+export const querySnapToObj = (snap: any) =>
+  _.transform(
+    snap.docs,
+    (result: any, doc) => {
+      result[doc.id] = doc.data()
+    },
+    {}
+  )

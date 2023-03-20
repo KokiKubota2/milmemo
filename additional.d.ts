@@ -1,1 +1,5 @@
-type MilkProps = { amount: number; drankAt: Timestamp; isBreastMilk: boolean }
+type MilkProps = {
+  amount: string | number
+  drankAt: Timestamp
+  isBreastMilk: boolean
+}

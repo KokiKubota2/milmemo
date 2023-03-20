@@ -1,4 +1,4 @@
-import { Box } from 'components/mui/material'
+import { Box, Container } from 'components/mui/material'
 
 import { AppBar } from 'app'
 
@@ -13,7 +13,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
       <Box sx={{ mb: 10 }}>
         <AppBar />
       </Box>
-      {children}
+      <Container>{children}</Container>
     </body>
   </html>
 )

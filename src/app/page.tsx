@@ -1,20 +1,88 @@
+'use client'
+
+import _ from 'lodash'
+import useSWR, { useSWRConfig } from 'swr'
+import axios from 'axios'
 import { NextPage } from 'next'
+import { useState, useEffect } from 'react'
+import {
+  Stack,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Box,
+  Button,
+} from 'components/mui/material'
 
-import { Stack } from 'components/mui/material'
+import { DrankMilkCards } from 'app'
 
-import { DrinkMilkButton, DrankMilkCards } from 'app'
-import { Timestamp } from 'firebase/firestore'
+const fetcher = (url: string) => axios.get(url).then((res) => res.data)
 
-const DANNY_DATA = {
-  hoge: { amount: 100, drankAt: Timestamp.now(), isBreastMilk: true },
-  foo: { amount: 120, drankAt: Timestamp.now(), isBreastMilk: false },
+const P: NextPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [amount, setAmount] = useState('0')
+  const [isBreastMilk, setIsBreastMilk] = useState(false)
+
+  const { mutate } = useSWRConfig()
+  const { data, error, isLoading } = useSWR('/api/milks', fetcher, {
+    onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+      if (error.status === 404 || retryCount >= 5) return
+    },
+  })
+  useEffect(() => {
+    if (_.isEmpty(data) || isLoading || error) return
+    const lastMilk = _.sortBy(data, 'drankAt', 'desc')[0]
+    setAmount(lastMilk.amount)
+  }, [data, isLoading, error])
+
+  if (error) {
+    console.error(error)
+    return <div>Failed to load</div>
+  }
+  if (isLoading) return <div>Loading...</div>
+
+  const onSubmit = async () => {
+    setIsSubmitting(true)
+    try {
+      await axios.post('/api/milks', { amount, isBreastMilk })
+    } catch (e) {
+      console.error(e)
+    }
+    setIsSubmitting(false)
+    mutate('/api/milks')
+  }
+
+  return (
+    <Stack spacing={2}>
+      <Box>
+        <TextField
+          value={amount}
+          size='small'
+          onChange={({ target }) => setAmount(target.value)}
+          label='ミルクの量(ml)'
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={() => setIsBreastMilk(!isBreastMilk)}
+              checked={isBreastMilk}
+            />
+          }
+          label='母乳'
+          labelPlacement='start'
+        />
+      </Box>
+      <Button
+        variant='contained'
+        fullWidth
+        onClick={onSubmit}
+        disabled={isSubmitting}>
+        ミルク飲みます！
+      </Button>
+
+      <DrankMilkCards {...{ milks: data }} />
+    </Stack>
+  )
 }
-
-const P: NextPage = () => (
-  <Stack spacing={2}>
-    <DrinkMilkButton />
-    <DrankMilkCards {...{ milks: DANNY_DATA }} />
-  </Stack>
-)
 
 export default P

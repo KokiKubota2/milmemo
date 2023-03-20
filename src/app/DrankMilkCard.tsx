@@ -7,7 +7,7 @@ const C: React.FC<MilkProps> = (props) => {
   const { amount, drankAt, isBreastMilk } = props
 
   return (
-    <Card>
+    <Card sx={{ background: '#eeeeee' }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
           {formatTimestamp(drankAt)}
