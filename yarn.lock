@@ -2074,11 +2074,6 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-api-middleware@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/next-api-middleware/-/next-api-middleware-2.0.1.tgz#e794da5dc7bb41b3226ee50eb70313bdedeb324b"
-  integrity sha512-yqOQjrOXkqZ7f1FybmTRWE1F4ypfcNWMC5FnmLresfu4ljY0W7iNwvOsaxSvCnoLYF5dnqxq+XeVeac7Gx9s9A==
-
 next@13.2.4:
   version "13.2.4"
   resolved "https://registry.yarnpkg.com/next/-/next-13.2.4.tgz#2363330392b0f7da02ab41301f60857ffa7f67d6"
