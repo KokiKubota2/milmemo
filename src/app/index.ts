@@ -6,3 +6,6 @@ export * from './DrankMilkCard'
 
 export { default as DrankMilkCards } from './DrankMilkCards'
 export * from './DrankMilkCards'
+
+export { default as DrinkMilkForm } from './DrinkMilkForm'
+export * from './DrinkMilkForm'
