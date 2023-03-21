@@ -18,21 +18,21 @@ const P: NextPage = () => {
     },
   })
 
-  const lastAmount = (() => {
-    if (_.isEmpty(data) || isLoading || error) return 0
-    const lastMilk = _.sortBy(data, 'drankAt', 'desc')[0]
-    return lastMilk.amount
-  })()
-
   if (error) {
     console.error(error)
     return <div>Failed to load</div>
   }
   if (isLoading) return <div>Loading...</div>
 
+  const lastAmount = () => {
+    if (_.isEmpty(data) || isLoading || error) return 0
+    const lastMilk = _.sortBy(data, 'drankAt', 'desc')[0]
+    return lastMilk.amount
+  }
+
   return (
     <Stack spacing={2}>
-      <DrinkMilkForm {...{ ...lastAmount }} />
+      <DrinkMilkForm {...{ lastAmount: lastAmount() }} />
       <DrankMilkCards {...{ milks: data }} />
     </Stack>
   )
