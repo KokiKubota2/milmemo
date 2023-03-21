@@ -23,17 +23,17 @@ export const GET = async (request: NextRequest) => {
 
 export const POST = async (request: NextRequest) => {
   console.log(request)
-  const { amount, isBreastMilk } = await request.json()
-  console.log(amount, isBreastMilk)
-  console.log(Timestamp.now())
+  // const { amount, isBreastMilk } = await request.json()
+  // console.log(amount, isBreastMilk)
+  // console.log(Timestamp.now())
 
-  const organizationId = 'W8Ol0QGqBEQxwweXp4nq' //ToDo: get from req.user
-  await db.collection(`organizations/${organizationId}/milks`).add({
-    amount,
-    isBreastMilk,
-    // drankAt: Timestamp.now(),
-    drankAt: DateTime.now().toJSDate(),
-  })
+  // const organizationId = 'W8Ol0QGqBEQxwweXp4nq' //ToDo: get from req.user
+  // await db.collection(`organizations/${organizationId}/milks`).add({
+  //   amount,
+  //   isBreastMilk,
+  //   // drankAt: Timestamp.now(),
+  //   drankAt: DateTime.now().toJSDate(),
+  // })
 
   return NextResponse.json({ success: true })
 }
