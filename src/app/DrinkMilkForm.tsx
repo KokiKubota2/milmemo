@@ -24,10 +24,13 @@ const C: React.FC<Props> = ({ lastAmount }) => {
   const onSubmit = async () => {
     setIsSubmitting(true)
     try {
-      console.log({ amount, isBreastMilk })
-      await axios.post('/api/milks', JSON.stringify({ amount, isBreastMilk }), {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      await axios.post(
+        '/api/milks',
+        { amount, isBreastMilk },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
     } catch (e) {
       console.error(e)
     }
