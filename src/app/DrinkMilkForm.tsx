@@ -16,7 +16,7 @@ type Props = { lastAmount: string }
 
 const C: React.FC<Props> = ({ lastAmount }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [amount, setAmount] = useState(lastAmount)
+  const [amount, setAmount] = useState(lastAmount || 0)
   const [isBreastMilk, setIsBreastMilk] = useState(false)
 
   const { mutate } = useSWRConfig()
@@ -25,7 +25,11 @@ const C: React.FC<Props> = ({ lastAmount }) => {
     setIsSubmitting(true)
     try {
       console.log({ amount, isBreastMilk })
-      await axios.post('/api/milks', { amount: 100, isBreastMilk: true })
+      await axios.post(
+        '/api/milks',
+        { amount, isBreastMilk },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
     } catch (e) {
       console.error(e)
     }
