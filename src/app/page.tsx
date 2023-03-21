@@ -44,7 +44,12 @@ const P: NextPage = () => {
   const onSubmit = async () => {
     setIsSubmitting(true)
     try {
-      await axios.post('/api/milks', JSON.stringify({ amount, isBreastMilk }))
+      await fetch('/api/milks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, isBreastMilk }),
+      })
+      // await axios.post('/api/milks', JSON.stringify({ amount, isBreastMilk }))
     } catch (e) {
       console.error(e)
     }
