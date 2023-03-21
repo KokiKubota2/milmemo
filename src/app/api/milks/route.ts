@@ -8,7 +8,7 @@ import { querySnapToObj } from 'lib/misc'
 
 const db = getFirestore()
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   const organizationId = 'W8Ol0QGqBEQxwweXp4nq' //ToDo: get from req.user
 
   const milks = await db
