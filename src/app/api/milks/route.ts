@@ -1,7 +1,6 @@
 import 'lib/firebase-admin'
 
 import _ from 'lodash'
-import { DateTime } from 'luxon'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { getFirestore, Timestamp } from 'firebase-admin/firestore'
@@ -22,18 +21,16 @@ export const GET = async (request: NextRequest) => {
 }
 
 export const POST = async (request: NextRequest) => {
-  console.log(request)
-  // const { amount, isBreastMilk } = await request.json()
-  // console.log(amount, isBreastMilk)
-  // console.log(Timestamp.now())
+  console.log(0)
+  const { amount, isBreastMilk } = await request.json()
+  console.log(1)
 
-  // const organizationId = 'W8Ol0QGqBEQxwweXp4nq' //ToDo: get from req.user
-  // await db.collection(`organizations/${organizationId}/milks`).add({
-  //   amount,
-  //   isBreastMilk,
-  //   // drankAt: Timestamp.now(),
-  //   drankAt: DateTime.now().toJSDate(),
-  // })
+  const organizationId = 'W8Ol0QGqBEQxwweXp4nq' //ToDo: get from req.user
+  await db.collection(`organizations/${organizationId}/milks`).add({
+    amount,
+    isBreastMilk,
+    drankAt: Timestamp.now(),
+  })
 
   return NextResponse.json({ success: true })
 }
