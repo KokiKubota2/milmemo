@@ -19,19 +19,6 @@
   "hosting": {
     "source": ".",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "frameworksBackend": {
-      "region": "asia-east1"
-    },
-    "headers": [
-      {
-        "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      }
-    ]
+    "frameworksBackend": { "region": "asia-east1" }
   }
 }
