@@ -11,11 +11,6 @@ const config = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
-console.log(
-  'NEXT_PUBLIC_FIREBASE_API_KEY',
-  process.env.NEXT_PUBLIC_FIREBASE_API_KEY
-)
-
 const firebaseApp = _.isEmpty(getApps()) ? initializeApp(config) : getApp()
 
 export default firebaseApp
