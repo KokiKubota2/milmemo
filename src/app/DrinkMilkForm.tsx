@@ -51,12 +51,14 @@ const C: React.FC<Props> = ({ lastAmount }) => {
         <Stack spacing={2}>
           <Stack spacing={2} direction='row'>
             <TextField
+              type='number'
               value={drankDate}
               size='small'
               onChange={({ target }) => setDrankDate(target.value)}
               label='日にち'
             />
             <TextField
+              type='number'
               value={drankTime}
               size='small'
               onChange={({ target }) => setDrankTime(target.value)}
@@ -65,6 +67,7 @@ const C: React.FC<Props> = ({ lastAmount }) => {
           </Stack>
           <Stack spacing={2} direction='row'>
             <TextField
+              type='number'
               value={amount}
               size='small'
               onChange={({ target }) => setAmount(target.value)}
