@@ -1,12 +1,19 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      match /milks/{milkId}{
-        allow read: if request.auth.uid != null;
-        allow create: if request.auth.uid != null;
-        allow update: if request.auth.uid != null;
-      }
+    function isUserExists(uid) {
+      let userRef = /databases/$(database)/documents/users/$(uid);
+      return exists(userRef);
+    }
+
+    match /milks/{milkId}{
+      allow read: if request.auth.uid != null && isUserExists(request.auth.uid);
+      allow create: if request.auth.uid != null && isUserExists(request.auth.uid);
+      allow update: if request.auth.uid != null && isUserExists(request.auth.uid);
+    }
+
+    match /users/{userId}{
+      allow read: if true;
     }
   }
 }
