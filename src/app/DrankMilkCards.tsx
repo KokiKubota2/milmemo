@@ -4,11 +4,11 @@ import { Box, Stack } from 'components/mui/material'
 
 import { DrankMilkCard } from 'app'
 
-const C: React.FC<{ milks: { [id: string]: MilkProps } }> = ({ milks }) => (
+const C: React.FC<{ milks: MilkProps[] | undefined }> = ({ milks }) => (
   <Box>
     <Stack spacing={2}>
-      {_.map(milks, (milk, id) => (
-        <DrankMilkCard {...{ ...milk }} key={id} />
+      {_.map(milks, (milk) => (
+        <DrankMilkCard {...{ ...milk }} key={milk.id} />
       ))}
     </Stack>
   </Box>

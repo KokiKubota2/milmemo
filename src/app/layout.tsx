@@ -1,6 +1,6 @@
 import { Box, Container } from 'components/mui/material'
 
-import { AppBar } from 'app'
+import { AppBar, AuthProvider } from 'app'
 
 export const metadata = {
   title: 'MIL MEMO',
@@ -13,7 +13,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
       <Box sx={{ mb: 10 }}>
         <AppBar />
       </Box>
-      <Container>{children}</Container>
+      <Container>
+        <AuthProvider>{children}</AuthProvider>
+      </Container>
     </body>
   </html>
 )

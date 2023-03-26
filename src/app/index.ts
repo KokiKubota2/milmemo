@@ -1,3 +1,6 @@
+export { default as AuthProvider } from './AuthProvider'
+export * from './AuthProvider'
+
 export { default as AppBar } from './AppBar'
 export * from './AppBar'
 
