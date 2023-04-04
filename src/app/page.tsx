@@ -25,15 +25,16 @@ const P: NextPage = () => {
   }
   if (loading) return <div>Loading...</div>
 
-  const lastAmount = () => {
+  const lastestAmount = () => {
     if (_.isEmpty(milks) || loading || error) return 0
-    const lastMilk = _.sortBy(milks, 'drankAt', 'desc')[0]
-    return lastMilk.amount
+    const lastestMilk = _.orderBy(milks, 'drankAt', 'desc')[0]
+
+    return lastestMilk.amount
   }
 
   return (
     <Stack spacing={2}>
-      <DrinkMilkForm {...{ lastAmount: lastAmount() }} />
+      <DrinkMilkForm {...{ lastestAmount: lastestAmount() }} />
       <DrankMilkCards {...{ milks }} />
     </Stack>
   )

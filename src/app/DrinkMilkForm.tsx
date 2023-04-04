@@ -15,9 +15,9 @@ import {
 
 import { milkConverter } from 'lib/firestoreConverter'
 
-type Props = { lastAmount: string | number }
+type Props = { lastestAmount: string | number }
 
-const C: React.FC<Props> = ({ lastAmount }) => {
+const C: React.FC<Props> = ({ lastestAmount }) => {
   const db = getFirestore()
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -25,7 +25,7 @@ const C: React.FC<Props> = ({ lastAmount }) => {
     DateTime.now().toFormat('yyyyMMdd')
   )
   const [drankTime, setDrankTime] = useState(DateTime.now().toFormat('HHmm'))
-  const [amount, setAmount] = useState(lastAmount || 0)
+  const [amount, setAmount] = useState(lastestAmount || 0)
   const [isBreastMilk, setIsBreastMilk] = useState(false)
 
   const onSubmit = async () => {
