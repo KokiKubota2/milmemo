@@ -1,7 +1,13 @@
 'use client'
 
 import _ from 'lodash'
-import { getFirestore, collection, orderBy, query } from 'firebase/firestore'
+import {
+  getFirestore,
+  collection,
+  orderBy,
+  query,
+  limit,
+} from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { NextPage } from 'next'
 
@@ -14,9 +20,11 @@ import { milkConverter } from 'lib/firestoreConverter'
 const P: NextPage = () => {
   const db = getFirestore()
   const [milks, loading, error] = useCollectionData(
-    query(collection(db, 'milks'), orderBy('drankAt', 'desc')).withConverter(
-      milkConverter
-    )
+    query(
+      collection(db, 'milks'),
+      orderBy('drankAt', 'desc'),
+      limit(20)
+    ).withConverter(milkConverter)
   )
 
   if (error) {
