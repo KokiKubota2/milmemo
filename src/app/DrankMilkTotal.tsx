@@ -10,6 +10,7 @@ import {
   getAggregateFromServer,
   startAt,
   orderBy,
+  count,
 } from 'firebase/firestore'
 import { NextPage } from 'next'
 import { useState } from 'react'
@@ -20,7 +21,7 @@ import { useEffect } from 'react'
 
 const P: NextPage = () => {
   const db = getFirestore()
-  const [todayTotal, setTodayTotal] = useState(0)
+  const [todayTotal, setTodayTotal] = useState({ sum: 0, count: 0 })
 
   useEffect(() => {
     getAggregateFromServer(
@@ -29,14 +30,16 @@ const P: NextPage = () => {
         orderBy('drankAt'),
         startAt(DateTime.now().startOf('day').toJSDate())
       ),
-      { todayTotal: sum('amount') }
-    ).then((s) => setTodayTotal(s.data().todayTotal))
+      { sum: sum('amount'), count: count() }
+    ).then((s) => setTodayTotal(s.data()))
   }, [])
 
   return (
     <Stack direction='row'>
       <Typography color='text.secondary'>今日の合計：</Typography>
-      <Typography color='text.primary'>{todayTotal}ml</Typography>
+      <Typography color='text.primary'>
+        {todayTotal.sum}ml（{todayTotal.count}回）
+      </Typography>
     </Stack>
   )
 }
