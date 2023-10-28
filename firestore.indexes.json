@@ -1,4 +1,33 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "milks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "drankAt",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "amount",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "milks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "drankAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "amount",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

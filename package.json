@@ -17,7 +17,7 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "encoding": "^0.1.13",
-    "firebase": "^9.18.0",
+    "firebase": "^10.5.2",
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^3.23.0",
     "lodash": "^4.17.21",

@@ -13,7 +13,7 @@ import { NextPage } from 'next'
 
 import { Stack } from 'components/mui/material'
 
-import { DrankMilkCards, DrinkMilkForm } from 'app'
+import { DrankMilkCards, DrinkMilkForm, DrankMilkTotal } from 'app'
 
 import { milkConverter } from 'lib/firestoreConverter'
 
@@ -43,6 +43,7 @@ const P: NextPage = () => {
   return (
     <Stack spacing={2}>
       <DrinkMilkForm {...{ lastestAmount: lastestAmount() }} />
+      <DrankMilkTotal />
       <DrankMilkCards {...{ milks }} />
     </Stack>
   )
