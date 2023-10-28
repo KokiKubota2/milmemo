@@ -73,7 +73,7 @@ const C: React.FC<Props> = ({ lastestAmount }) => {
               onChange={({ target }) => setAmount(target.value)}
               label='ミルクの量(ml)'
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={
                 <Checkbox
                   onChange={() => setIsBreastMilk(!isBreastMilk)}
@@ -82,7 +82,7 @@ const C: React.FC<Props> = ({ lastestAmount }) => {
               }
               label='母乳'
               labelPlacement='start'
-            />
+            /> */}
           </Stack>
         </Stack>
       </Box>
