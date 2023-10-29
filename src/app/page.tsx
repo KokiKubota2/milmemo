@@ -13,7 +13,12 @@ import { NextPage } from 'next'
 
 import { Stack } from 'components/mui/material'
 
-import { DrankMilkCards, DrinkMilkForm, DrankMilkTotal } from 'app'
+import {
+  DrankMilkCards,
+  DrinkMilkForm,
+  DrankMilkTotal,
+  ElapsedMinutes,
+} from 'app'
 
 import { milkConverter } from 'lib/firestoreConverter'
 
@@ -33,17 +38,20 @@ const P: NextPage = () => {
   }
   if (loading) return <div>Loading...</div>
 
-  const lastestAmount = () => {
+  const latestDrankMilk = (() => {
     if (_.isEmpty(milks) || loading || error) return 0
     const lastestMilk = _.orderBy(milks, 'drankAt', 'desc')[0]
 
-    return lastestMilk.amount
-  }
+    return lastestMilk
+  })() as MilkProps
 
   return (
     <Stack spacing={2}>
-      <DrinkMilkForm {...{ lastestAmount: lastestAmount() }} />
-      <DrankMilkTotal />
+      <DrinkMilkForm {...{ latestDrankMilk }} />
+      <Stack spacing={1}>
+        <DrankMilkTotal />
+        <ElapsedMinutes {...{ latestDrankMilk }} />
+      </Stack>
       <DrankMilkCards {...{ milks }} />
     </Stack>
   )

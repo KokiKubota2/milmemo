@@ -15,3 +15,6 @@ export * from './DrinkMilkForm'
 
 export { default as DrankMilkTotal } from './DrankMilkTotal'
 export * from './DrankMilkTotal'
+
+export { default as ElapsedMinutes } from './ElapsedMinutes'
+export * from './ElapsedMinutes'

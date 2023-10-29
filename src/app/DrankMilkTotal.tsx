@@ -1,6 +1,7 @@
 'use client'
 
 import _ from 'lodash'
+import { useEffect, useState } from 'react'
 import { DateTime } from 'luxon'
 import {
   getFirestore,
@@ -12,14 +13,10 @@ import {
   orderBy,
   count,
 } from 'firebase/firestore'
-import { NextPage } from 'next'
-import { useState } from 'react'
 
 import { Stack, Typography } from 'components/mui/material'
 
-import { useEffect } from 'react'
-
-const P: NextPage = () => {
+const C: React.FC = () => {
   const db = getFirestore()
   const [todayTotal, setTodayTotal] = useState({ sum: 0, count: 0 })
 
@@ -44,4 +41,4 @@ const P: NextPage = () => {
   )
 }
 
-export default P
+export default C
