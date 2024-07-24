@@ -1,6 +1,7 @@
+import { AppBar, AuthProvider } from 'app'
 import { Box, Container } from 'components/mui/material'
 
-import { AppBar, AuthProvider } from 'app'
+import { GeolocationProvider } from 'lib/context/geolocation'
 
 export const metadata = {
   title: 'MIL MEMO',
@@ -14,7 +15,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         <AppBar />
       </Box>
       <Container>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <GeolocationProvider>{/* {children} */}</GeolocationProvider>
+        </AuthProvider>
       </Container>
     </body>
   </html>
